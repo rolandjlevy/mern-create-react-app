@@ -30,7 +30,7 @@ const App = function () {
 
 	return (
 		<>
-			<h1>GET / POST with MERN</h1>
+			<h1>MERN app</h1>
 			<ol>
       {users && users.length ? users.map((user, index) => (
         <li key={index}>
