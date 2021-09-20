@@ -6,21 +6,21 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@types/react": "^17.0.13",
-    "@types/react-dom": "^17.0.8",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "@types/react": "^17.0.13",
+    "@types/react-dom": "^17.0.8",
     "axios": "^0.21.4",
+    "create-react-app": "^4.0.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-scripts": "4.0.3",
-    "create-react-app": "^4.0.3",
+    "react-scripts": "^4.0.3",
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "PORT=3000 HOST=0.0.0.0 react-scripts start",
-    "build": "PORT=3000 HOST=0.0.0.0 react-scripts build",
+    "start": "PORT=3000 HOST=0.0.0.0 node_modules/react-scripts/bin/react-scripts.js start",
+    "build": "PORT=3000 HOST=0.0.0.0 node_modules/react-scripts/bin/react-scripts.js build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
