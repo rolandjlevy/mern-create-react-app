@@ -4,6 +4,7 @@ const path = require('path');
 const app = express();
 const port = process.env.PORT || 5050;
 
+app.use(express.static(__dirname + "/public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
@@ -19,10 +20,16 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(express.static(path.join(__dirname, '../client/build')));
-
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/build'))
+app.get('/', (req, res) => {
+  res.send('Starting up the server...');
 });
+
+if (process.env.NODE_ENV === 'production') {
+  const buildPath = path.join(__dirname, '../client/build');
+  app.use(express.static(buildPath));
+  app.get('*', (req, res) => {
+    res.sendFile(buildPath);
+  });
+}
 
 module.exports = app;

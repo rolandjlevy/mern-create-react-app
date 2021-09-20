@@ -11,7 +11,7 @@
     "client": "cd client && yarn start",
     "server": "nodemon server/index.js",
     "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
-    "dev-build": "concurrently \"yarn server\" \"yarn build\""
+    "dev-build": "concurrently \"NODE_ENV=production yarn server\" \"yarn build\""
   },
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
