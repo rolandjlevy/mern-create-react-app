@@ -19,8 +19,8 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "PORT=3000 HOST=0.0.0.0 node_modules/react-scripts/bin/react-scripts.js start",
-    "build": "PORT=3000 HOST=0.0.0.0 node_modules/react-scripts/bin/react-scripts.js build",
+    "start": "PORT=3000 HOST=0.0.0.0 react-scripts start",
+    "build": "PORT=3000 HOST=0.0.0.0 react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
