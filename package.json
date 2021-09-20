@@ -7,11 +7,11 @@
   "author": "",
   "license": "ISC",
   "scripts": {
-    "build": "cd client && yarn build",
-    "client": "cd client && yarn start",
+    "build": "cd client && npm run build",
+    "client": "cd client && npm run start",
     "server": "nodemon server/index.js",
-    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
-    "dev-build": "concurrently \"NODE_ENV=production yarn server\" \"yarn build\""
+    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
+    "dev-build": "concurrently \"NODE_ENV=production npm run server\" \"npm run build\""
   },
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
