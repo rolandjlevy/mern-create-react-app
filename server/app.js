@@ -21,7 +21,7 @@ app.use((req, res, next) => {
 });
 
 app.get('/', (req, res) => {
-  res.send('Starting up the server...');
+  res.send(`<h3>Starting up the server...</h3>`);
 });
 
 if (process.env.NODE_ENV === 'production') {

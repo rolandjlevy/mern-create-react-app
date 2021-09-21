@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 
 const App = function () {
@@ -6,11 +6,15 @@ const App = function () {
 	const [username, setUsername] = useState("");
 	const [email, setEmail] = useState("");
 
+  let rand = 0;
+
 	useEffect(() => {
-		axios
-			.get("/api/users")
-			.then(response => setUsers(response.data))
-			.catch(err => console.log(err));
+    axios
+      .get("/api/users")
+      .then(response => {
+        setUsers(response.data);
+      })
+      .catch(err => console.log(err));
 	}, [users]);
 
 	const submitForm = (e) => {
@@ -21,6 +25,7 @@ const App = function () {
       { 'Content-Type': 'application/json' }
     )
     .then(response => {
+      rand = Math.random(Math.random() * 50)
       console.log("Account created successfully",  { response });
     })
     .catch(error => {

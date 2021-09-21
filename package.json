@@ -7,6 +7,7 @@
   "author": "",
   "license": "ISC",
   "scripts": {
+    "test": "cd client && npm run test",
     "build": "cd client && npm run build",
     "client": "cd client && npm run start",
     "server": "nodemon server/index.js",
