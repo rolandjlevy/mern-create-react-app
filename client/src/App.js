@@ -1,48 +1,50 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import axios from 'axios';
 
 const App = function () {
 	const [users, setUsers] = useState(null);
+	const [error, setError] = useState(null);
 	const [username, setUsername] = useState("");
 	const [email, setEmail] = useState("");
 
-  let rand = 0;
+  let isRendered = useRef(false);
+  const usersRef = useRef(null);
 
-	useEffect(() => {
+  const scrollToBottom = () => {
+    usersRef.current.scrollTop = usersRef.current.scrollHeight;
+  }
+  
+  useEffect(() => {
     axios
       .get("/api/users")
       .then(response => {
-        setUsers(response.data);
+        if (!isRendered.current) {
+          setUsers(response.data);
+          scrollToBottom();
+        }
       })
-      .catch(err => console.log(err));
-	}, [users]);
+      .catch(err =>  setError(err));
+    return () => isRendered.current = true;
+  }, [users]);
 
 	const submitForm = (e) => {
     e.preventDefault();
-		if (username === "" || email === "") return;
 		axios.post('/api/users', 
       { username, email	}, 
       { 'Content-Type': 'application/json' }
     )
     .then(response => {
-      rand = Math.random(Math.random() * 50)
-      console.log("Account created successfully",  { response });
+      setUsers(response.data);
+      scrollToBottom();
     })
-    .catch(error => {
-      console.log("Could not create account", { error });
+    .catch(err => {
+      setError(err);
     });
 	}
 
 	return (
 		<>
 			<h1>MERN app</h1>
-			<ol>
-      {users && users.length ? users.map((user, index) => (
-        <li key={index}>
-          Name: {user.username} - Email: {user.email}
-        </li>
-      )) : 'Loading...'}
-			</ol>
 		
 			<form onSubmit={submitForm}>
 				<input
@@ -57,8 +59,17 @@ const App = function () {
 					placeholder="Enter email..."
           name="email"
 				/>
-				<input type="submit" />
+				<input type="submit" disabled={username === '' || email === ''} />
 			</form>
+
+			<ul className="users" ref={usersRef}>
+      {error && JSON.stringify(error.message)}
+      {users && users.length ? users.map((user, index) => (
+        <li key={index}>
+          {index + 1}: {user.username}, {user.email}
+        </li>
+      )) : !error && 'Loading...'}
+			</ul>
 		</>
 	);
 };

@@ -10,13 +10,20 @@ const mockData = [
   { username: 'Dad', email: 'aimelevy@gmail.com' }
 ];
 
-test('should render App elements', async () => {
-  render(<App />);
-  const heading = screen.getByRole('heading', { name: /mern app/i})
-  expect(heading).toBeInTheDocument();
+describe('Mern app gets and posts user data', () => {
 
-  await(() => {
-    jest.spyOn(axios, 'get').mockResponseValue(mockData);
+  test('should render App elements', async () => {
+    render(<App />);
+    const heading = screen.getByRole('heading', { name: /mern app/i})
+    expect(heading).toBeInTheDocument();
+
   });
+  
+  test('should get user data', async () => {
+    render(<App />);
 
+    await(() => {
+      jest.spyOn(axios, 'get').mockResponseValue(mockData);
+    });
+  });
 });

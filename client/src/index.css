@@ -13,3 +13,17 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.users {
+  max-height: 200px;
+  overflow-y: auto;
+  padding: 0 10px 0 30px;
+  width: fit-content;
+  list-style: none;
+}
+
+.users > li {
+  padding: 5px;
+  border-bottom: 1px solid #aaa;
+  list-style: none;
+}
