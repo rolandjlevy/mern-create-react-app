@@ -21,9 +21,14 @@ describe('Mern app gets and posts user data', () => {
   
   test('should get user data', async () => {
     render(<App />);
-
+    
+    const axiosSpy = jest.spyOn(axios, 'get').mockImplementation(() => {});
+    
     await(() => {
       jest.spyOn(axios, 'get').mockResponseValue(mockData);
+      expect(axiosSpy).toHaveBeenCalledTimes(1);
     });
   });
+
+  test('should post user data', async () => {} );
 });
