@@ -9,8 +9,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
 
-const User = require('./models/user');
-
 const users = require('./api/users');
 app.use('/api/users', users);
 
