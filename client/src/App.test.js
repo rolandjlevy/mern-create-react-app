@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import App from './App';
 import axios from 'axios';
 
@@ -20,11 +20,12 @@ describe('Mern app gets and posts user data', () => {
   });
   
   test('should get user data', async () => {
+
     render(<App />);
-    
+
     const axiosSpy = jest.spyOn(axios, 'get').mockImplementation(() => {});
     
-    await(() => {
+    await waitFor(() => {
       jest.spyOn(axios, 'get').mockResponseValue(mockData);
       expect(axiosSpy).toHaveBeenCalledTimes(1);
     });
